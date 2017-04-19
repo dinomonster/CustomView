@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomClockView">
+        <attr name="radius" format="integer"/>
+        <attr name="textSize" format="integer"/>
+        <attr name="secondLen" format="integer"/>
+        <attr name="minLen" format="integer"/>
+        <attr name="hourLen" format="integer"/>
+    </declare-styleable>
+</resources>
