@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private CustomClockFragment customClockFragment;
     private WaveFragment waveFragment;
+    private SmileLoadFragment smileLoadFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +51,13 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         customClockFragment = new CustomClockFragment();
         waveFragment = new WaveFragment();
+        smileLoadFragment = new SmileLoadFragment();
         fragmentManager.beginTransaction()
                 .add(R.id.content,customClockFragment)
                 .add(R.id.content,waveFragment)
+                .add(R.id.content,smileLoadFragment)
                 .hide(waveFragment)
+                .hide(smileLoadFragment)
                 .commit();
     }
 
@@ -97,10 +101,23 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            fragmentManager.beginTransaction().hide(waveFragment).show(customClockFragment).commit();
+            fragmentManager.beginTransaction()
+                    .hide(waveFragment)
+                    .hide(smileLoadFragment)
+                    .show(customClockFragment)
+                    .commit();
         } else if (id == R.id.nav_gallery) {
-            fragmentManager.beginTransaction().hide(customClockFragment).show(waveFragment).commit();
+            fragmentManager.beginTransaction()
+                    .hide(customClockFragment)
+                    .hide(smileLoadFragment)
+                    .show(waveFragment)
+                    .commit();
         } else if (id == R.id.nav_slideshow) {
+            fragmentManager.beginTransaction()
+                    .hide(customClockFragment)
+                    .hide(waveFragment)
+                    .show(smileLoadFragment)
+                    .commit();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
