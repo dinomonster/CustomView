@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private CustomClockFragment customClockFragment;
     private WaveFragment waveFragment;
+    private Wave2Fragment wave2Fragment;
     private SmileLoadFragment smileLoadFragment;
 
     @Override
@@ -51,12 +52,15 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         customClockFragment = new CustomClockFragment();
         waveFragment = new WaveFragment();
+        wave2Fragment = new Wave2Fragment();
         smileLoadFragment = new SmileLoadFragment();
         fragmentManager.beginTransaction()
                 .add(R.id.content,customClockFragment)
                 .add(R.id.content,waveFragment)
                 .add(R.id.content,smileLoadFragment)
+                .add(R.id.content,wave2Fragment)
                 .hide(waveFragment)
+                .hide(wave2Fragment)
                 .hide(smileLoadFragment)
                 .commit();
     }
@@ -104,22 +108,30 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .hide(waveFragment)
                     .hide(smileLoadFragment)
+                    .hide(wave2Fragment)
                     .show(customClockFragment)
                     .commit();
         } else if (id == R.id.nav_gallery) {
             fragmentManager.beginTransaction()
                     .hide(customClockFragment)
                     .hide(smileLoadFragment)
+                    .hide(wave2Fragment)
                     .show(waveFragment)
                     .commit();
         } else if (id == R.id.nav_slideshow) {
             fragmentManager.beginTransaction()
                     .hide(customClockFragment)
                     .hide(waveFragment)
+                    .hide(wave2Fragment)
                     .show(smileLoadFragment)
                     .commit();
         } else if (id == R.id.nav_manage) {
-
+            fragmentManager.beginTransaction()
+                    .hide(customClockFragment)
+                    .hide(waveFragment)
+                    .hide(smileLoadFragment)
+                    .show(wave2Fragment)
+                    .commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

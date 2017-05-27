@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
@@ -27,6 +28,8 @@ public class WaveView extends View {
     private int offset;
 
     private int mCenterY;
+
+    private int waveHeight = 60;
 
     //屏幕高度
     private int mScreenHeight;
@@ -66,17 +69,19 @@ public class WaveView extends View {
                 postInvalidate();
             }
         });
-        animator.start();
+//        animator.start();
     }
 
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        Log.e("onSizeChanged","begore:"+mWaveCount);
         mScreenHeight = h;
         mScreenWidth = w;
         mWaveCount = (int) Math.round(mScreenWidth / mWL + 1.5);
         mCenterY = mScreenHeight / 2;
+        Log.e("onSizeChanged","after:"+mWaveCount);
     }
 
     @Override
@@ -84,9 +89,10 @@ public class WaveView extends View {
         super.onDraw(canvas);
         mPath.reset();
         mPath.moveTo(-mWL + offset, mCenterY);
+        Log.e("mWaveCount","mWaveCount:"+mWaveCount);
         for (int i = 0; i < mWaveCount; i++) {
-            mPath.quadTo((-mWL * 3 / 4) + (i * mWL) + offset, mCenterY + 60, (-mWL / 2) + (i * mWL) + offset, mCenterY);
-            mPath.quadTo((-mWL / 4) + (i * mWL) + offset, mCenterY - 60, i * mWL + offset, mCenterY);
+            mPath.quadTo((-mWL * 3 / 4) + (i * mWL) + offset, mCenterY + waveHeight, (-mWL / 2) + (i * mWL) + offset, mCenterY);
+            mPath.quadTo((-mWL / 4) + (i * mWL) + offset, mCenterY - waveHeight, i * mWL + offset, mCenterY);
         }
         mPath.lineTo(mScreenWidth, mScreenHeight);
         mPath.lineTo(0, mScreenHeight);

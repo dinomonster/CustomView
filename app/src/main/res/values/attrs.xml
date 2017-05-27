@@ -7,4 +7,11 @@
         <attr name="minLen" format="integer"/>
         <attr name="hourLen" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="WaveView">
+        <attr name="waveLen" format="integer"/>
+        <attr name="waveCount" format="integer"/>
+        <attr name="waveHeight" format="integer"/>
+        <attr name="waveColor" format="integer"/>
+    </declare-styleable>
 </resources>
